@@ -8,30 +8,30 @@
                 <group
                     string="Twilio account"
                     name="twilio"
-                    attrs="{'invisible': [('provider', '!=', 'twilio')]}"
+                    invisible="provider != 'twilio'"
                 >
                     <field name="twilio_production_env" widget="boolean_toggle" />
                     <field
                         name="twilio_test_account_sid"
-                        attrs="{'invisible': [('twilio_production_env', '=', True)]}"
+                        invisible="twilio_production_env"
                     />
                     <field
                         name="twilio_test_auth_token"
                         password="True"
-                        attrs="{'invisible': [('twilio_production_env', '=', True)]}"
+                        invisible="twilio_production_env"
                     />
                     <field
                         name="twilio_account_sid"
-                        attrs="{'required': [('provider', '=', 'twilio'),('twilio_production_env', '=', True)]}"
+                        required="provider == 'twilio' and twilio_production_env"
                     />
                     <field
                         name="twilio_auth_token"
                         password="True"
-                        attrs="{'required': [('provider', '=', 'twilio'),('twilio_production_env', '=', True)]}"
+                        required="provider == 'twilio' and twilio_production_env"
                     />
                     <field
                         name="twilio_number_id"
-                        attrs="{'required': [('provider', '=', 'twilio'),('twilio_production_env', '=', True)]}"
+                        required="provider == 'twilio' and twilio_production_env"
                     />
                     <field name="twilio_balance_account" />
                     <button

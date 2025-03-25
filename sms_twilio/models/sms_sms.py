@@ -3,6 +3,8 @@
 
 from odoo import fields, models
 
+from ..tools.sms_api import CustomSmsApi
+
 
 class SmsSms(models.Model):
     _inherit = "sms.sms"
@@ -10,7 +12,7 @@ class SmsSms(models.Model):
     error_detail = fields.Text(readonly=True)
 
     def _split_batch(self):
-        if self.env["sms.api"]._get_twilio_sms_account():
+        if CustomSmsApi(self.env)._get_twilio_sms_account():
             # No batch with Twilio
             for record in self:
                 yield [record.id]
